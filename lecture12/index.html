@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>常微分方程式3 - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../lecture10/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../lecture11/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#3">常微分方程式の数値解法 3</a></li>
+            <li class="second-level"><a href="#symplectic-euler">Symplectic Euler法</a></li>
+                
+            <li class="second-level"><a href="#stormer-verlet">Störmer-Verlet法</a></li>
+                
+            <li class="second-level"><a href="#_1">陰的な解法</a></li>
+                
+            <li class="second-level"><a href="#_2">今日の課題</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="3">常微分方程式の数値解法 3</h1>
+<p>今回の講義も常微分方程式の数値解法のベクトル編です．</p>
+<p>例題として，\(d=4\) の場合の次の微分方程式（<strong>Keplerの2体問題</strong>）を考えましょう：
+\begin{equation}
+\frac{\mathrm d}{\mathrm dt} q_1 = p_1, \quad \frac{\mathrm d}{\mathrm dt} q_2 = p_2, \quad
+\frac{\mathrm d}{\mathrm dt} p_1 = -\frac{q_1}{(q_1^2 + q_2)^{3/2}}, \quad \frac{\mathrm d}{\mathrm dt} p_2 = -\frac{q_2}{(q_1^2 + q_2)^{3/2}}.
+\end{equation}
+これまでの表記との対応は \(y = [q_1,q_2,p_1,p_2]^\top\) です．
+よく知られているように，\(q=(q_1,q_2)\) は，一体を原点に固定したときのもう一体の位置ベクトルを，\(p = (p_1,p_2)\) は速度ベクトルを表します．
+また，
+\begin{equation}
+H(q,p) = \frac{p_1^2+p_2^2}{2} - \frac{1}{\sqrt{q_1^2+q_2^2}}
+\end{equation}
+とおくと，これは保存量になります（エネルギーやハミルトニアンと呼ばれます）．
+すなわち，微分方程式の解に沿って
+\begin{equation}
+\frac{\mathrm d}{\mathrm dt} H(q(t),p(t)) = 0
+\end{equation}
+が成り立ちます．
+また，
+\begin{equation}
+L(q,p) = q_1 p_2 - q_2p_1 
+\end{equation}
+という保存量も持ちます．この量は角運動量と呼ばれ，これが保存量であることは，Keplerの第2法則に他なりません．</p>
+<p>今回の講義では，Kepler方程式をいくつかの解法で数値計算した様子を比較してみます．</p>
+<h4 id="symplectic-euler"><strong>Symplectic Euler法</strong></h4>
+<p>前回の講義で学んだsymplectic Euler法は次のようになります．
+Kepler問題を
+\begin{equation}
+\frac{\mathrm d}{\mathrm dt} q = p, \quad \frac{\mathrm d}{\mathrm dt}p = g(q)
+\end{equation}
+と表すことにすると，symplectic Euler法の更新式は次のようになります：
+\begin{align}
+    q_{n+1} &amp;= q_{n} + h p_{n}, \cr
+    p_{n+1} &amp;= p_{n} + h g(q_{n+1}).
+\end{align}
+Symplectic Euler法は1次精度の解法です．</p>
+<h4 id="stormer-verlet"><strong>Störmer-Verlet法</strong></h4>
+<p>Symplectic Euler法を2次精度に拡張したStörmer-Verlet法の更新式は次のようになります：
+\begin{align}
+    q_{n+1/2} &amp;= q_{n} + \frac{h}{2} p_{n}, \cr
+    p_{n+1} &amp;= p_{n} + h g(q_{n+1/2}), \cr
+    q_{n+1} &amp;= q_{n+1/2} + \frac{h}{2} p_{n+1}.
+\end{align}
+Störmer-Verlet法は2次精度の解法です．</p>
+<p>Störmer-Verlet法は，天文学の文脈で，1907年にStörmerにより提案された解法です．
+今日に至るまで，天文学の文脈で広く利用されています（より正確に言えば，Störmer-Verlet法を高精度に拡張した解法がよく利用されています）．
+一方で，分子動力学計算の文脈で，1967年にVerletが（Störmerとは独立に）本質的に同じ解法を提案したという経緯があります．
+そのため，分野によっては，Störmer法といったりVerlet法といったりすることもあります．</p>
+<p>なお，この解法を歴史上はじめて用いたのはStörmerではありません．
+さらに200年以上遡り，NewtonがPrincipiaの中で，ケプラーの第2法則を幾何的に理解するために用いたのが初出です．
+そのため，数値解析学者の中には，Newton-Störmer-Verlet法と呼ぶ人もいます．</p>
+<h4 id="_1"><strong>陰的な解法</strong></h4>
+<p>今日の講義では，陰的な解法も扱います．
+ここでは簡単のため，二つの解法をプログラミングしてみます．</p>
+<ul>
+<li><strong>陰的Euler法</strong> <br>
+  \begin{equation}
+    y_{n+1} = y_n + h f(y_{n+1})
+  \end{equation}</li>
+<li><strong>陰的中点則</strong> <br>
+  \begin{equation}
+    y_{n+1} = y_n + h f\Big(\frac{y_{n+1}+y_n}{2}\Big)
+  \end{equation}</li>
+</ul>
+<p>どちらも，時間発展を計算するためには，連立<strong>非線形</strong>方程式を解く必要があります．
+実用上は，不動点反復法・簡易Newton法・Newton法などがよく利用されますが，ここでは，パッケージの利用の練習も兼ねて，NLsolveパッケージを利用して数値計算することにします．</p>
+<h3 id="_2">今日の課題</h3>
+<p>今日の課題は，Störmer-Verlet法と陰的中点則のプログラムを完成させることです．
+それぞれ，Symplectic Euler法と陰的Euler法のプログラミングが参考になります．
+これらを完成させたうえで，数値解に対して，エネルギーと角運動量の振る舞いを観察していきます．</p>
+<div class="bs-callout bs-callout-primary">
+  <h4>課題</h4>
+    サンプルプログラムの中のStörmer-Verlet法と陰的中点則の関数を完成させ，CLEで提出してください．
+    CLEで提出する際は，notebookのpdfを添付し，解法の特徴について考察してください．
+</div>
+
+<p>サンプルファイルは<a href="https://github.com/yutomiyatake/ExpMath1-programs/blob/db190968ae1a2811a56aea5c6807609b448dbcbf/julia/ODE3.ipynb">こちら</a></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>なぜプログラミング - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="..">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../jupyterhub/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#_1">なぜプログラミングを習うのか</a></li>
+            <li class="second-level"><a href="#_2">プログラミングとは</a></li>
+                
+            <li class="second-level"><a href="#_3">プログラミング（の学習）の構成要素</a></li>
+                
+                <li class="third-level"><a href="#_4">アルゴリズム</a></li>
+                <li class="third-level"><a href="#_5">プログラミング言語</a></li>
+                <li class="third-level"><a href="#_6">スキル・経験</a></li>
+            <li class="second-level"><a href="#_7">プログラミングを嫌いにならない</a></li>
+                
+            <li class="second-level"><a href="#github-education">GitHub Education</a></li>
+                
+            <li class="second-level"><a href="#_8">この講義を最後まで学習すると具体的にどんなことができるの？</a></li>
+                
+            <li class="second-level"><a href="#_9">この講義で扱わないこと</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="_1">なぜプログラミングを習うのか</h1>
+<p>プログラミングを学習するモチベーションには様々なものがあります．
+人工知能に興味がある人もいると思いますし，スマートフォンのアプリを開発してみたい人もいるでしょう．
+一方で，「数学者にはプログラミングは不要だ！」と思っている人も少なからずいるのではないでしょうか．
+しかし，初等教育においてもプログラミング教育がはじまろうとしていることからも分かるように，プログラミングは理系の人材としてだけでなく，現代人の素養の一つになりつつあるので，その意味からも，プログラミングの基礎を学習することには大きな意味があると思います．</p>
+<h2 id="_2">プログラミングとは</h2>
+<p>そもそも，プログラミングとは何でしょうか．
+人それぞれいろいろなイメージを持っているのではないかと思います．
+映画やドラマではよく超絶スキルをもったプログラマが登場するので，「超絶スキルを身につけること」といったイメージを持っている人もいるかもしれません．</p>
+<p>プログラミングを一言で説明するならば，計算機（コンピュータ）に</p>
+<div style="text-align: center;">
+<b>（データ）入力 → 処理 → 出力</b>
+</div>
+
+<p>の作業を<strong>事前</strong>に指示する行為といえます．</p>
+<p>したがって，プログラミングを学習するためには，計算機の長所と短所を理解しておく必要がでてきます．
+全てを列挙するわけではありませんが，いくつか例を挙げてみましょう．
+なお，ここでは現代において主流の古典コンピュータについての長所・短所について考えます（
+量子コンピュータを考えると当然古典コンピュータとは異なる特徴がありますが，短所が全て克服されるというわけではありません）．</p>
+<table>
+<thead>
+<tr>
+<th>長所</th>
+<th>短所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>計算が高速</td>
+<td>曖昧な指示はダメ</td>
+</tr>
+<tr>
+<td>飽きない・疲れない</td>
+<td>単純な指示の組み合わせでないといけない（組み合わせは複雑でよい）</td>
+</tr>
+<tr>
+<td>指示を守る</td>
+<td>無限は扱えない</td>
+</tr>
+<tr>
+<td>忘れない</td>
+<td>高速とはいえ，スピードは有限</td>
+</tr>
+</tbody>
+</table>
+<p>プログラミングを学ぶためには，短所をよく理解しておくことが必要です．
+先に長所について少し触れますが，このような長所も「壊れない限りは」あるいは「電力が供給されている限りは」という条件付きであることに注意しましょう．
+次に短所について少し詳しく説明します．
+計算機は確かに多くの人間よりも高速に計算ができますし，いろいろなソフトウェアやアプリを使うと「すごいこと」がいとも簡単に行えてしまうことが多いです．
+しかし，計算機そのものが人間のような高度な知能を持っているわけではないので，計算機への指示は「わかりやすい」ものでないといけません（決められた文法を確実に守る必要があります）．
+また，いわゆる「すごいこと」も，細かく分解していけば，本当に単純な指示の組み合わせになっています．
+また，計算機には様々な有限性があり，それゆえに，困難に遭遇することも少なくありません．
+例えば，無理数を表現したいとき，無限の桁を計算機の中で表現するわけにはいきませんから，有限桁で打ち切って表現することが多いです．
+通常，実数は 15〜16 桁で表現し，それより細かく表現するには計算の速度など多くを犠牲にすることになります．
+また，無限が扱えないということから，数学の極限操作は特に苦手です．
+さらにいえば，一回ごとの四則演算は非常に高速に行えるとはいえ，解きたい問題やそれに対するアルゴリズムによっては</p>
+<div style="text-align: center;">
+<b>四則演算1回あたりの計算時間 x 計算全体に必要な演算回数 >> 宇宙の年齢</b>
+</div>
+
+<p>ということも多いので，総合的に様々な注意が必要になります．</p>
+<h2 id="_3">プログラミング（の学習）の構成要素</h2>
+<p>プログラミングを習得するためには，どのようなことを学習する必要があるのでしょうか．
+もちろん，ハードウェアについての最低限の知識は必要です（この講義でも説明します）が，
+数学の問題（数学の未解決問題というわけではなく，数学的に定式化された問題）をプログラミングによって解くことを考えた場合，次のような要素が重要です．</p>
+<h4 id="_4">アルゴリズム</h4>
+<p>これは問題を解くための方法論です．アルゴリズムの理解や開発には数学的素養が不可欠です．</p>
+<h4 id="_5">プログラミング言語</h4>
+<p>昔は計算機が直接理解できる「機械語」を使っていました．
+しかし，これは非常に難解なので，人間が（しっかり学べば）比較的簡単に扱えて，機械語へは自動的に翻訳してくれる言語が多数開発されました．
+もちろんそれぞれの言語に得意・不得意な分野があります．
+この講義では，プログラミング言語としては古めの <strong>C 言語</strong> と，科学技術計算用に特化して開発された比較的新しい <strong>Julia</strong> を使って学習を進めます．</p>
+<h4 id="_6">スキル・経験</h4>
+<p>外国語を学習するときと同じように，一朝一夕に習得できるわけではなく，
+経験を積むことは非常に重要です．
+その中で，多くのスキルも（知らず識らずのうちに）身についていくはずです．</p>
+<p>外国語を学ぶときと大きく異なるのは，「雰囲気」では計算機に何も伝わらないという点です．
+指示の中にたった一箇所の文法ミスがあるだけで，そのプログラムは実行されません．
+とはいえ，講義ではエラーメッセージの読み方も説明しますし，また，「文法テスト」のようなことも行いませんので，その点は安心してください．
+困ったとき（例えば，文法が分からない・忘れたといった場合）は，調べればよいのです．
+特にこの講義で扱うような基礎的な内容は，インターネット上で解説が見つかることがほとんどです．
+そのような検索能力（および，適切な情報を取捨選択する能力）もこの講義を通して高めていってほしいと思っています．</p>
+<h2 id="_7">プログラミングを嫌いにならない</h2>
+<p>プログラミングを身近に感じてもらうこともこの講義の目的の一つです．ですので，（1 年生のときに少しは学習していると思いますが）自分で手を動かしながらプログラミングの勉強をするのははじめてという人も，一つずつ着実に内容を理解し，経験を積んでいけば，半年も経てばある程度の能力に到達できると思います．</p>
+<p>ただし，語学の勉強でも言えることですが，全くの初心者がいきなりヘミングウェイの小説を英語で読もうとすると心が折れると思います．この講義でもできる限り初歩的なことからはじめていきますが，そこをおろそかにしていると，数週間後の講義は途端に分からなくなる可能性があるので注意してください．また，語学の勉強をはじめるときは，文法からしっかりやりたい人やまずはラフな会話から慣れていきたい人など，人によってスタイルの違いがあるでしょう．プログラミングの勉強をするときも，どんなことなら楽しめそうかといったことを考えながら勉強するとよいのではと思います．</p>
+<h2 id="github-education">GitHub Education</h2>
+<p>GitやGitHubというものを聞いたことがあるかもしれません．大雑把に言えば，Gitはバージョン管理システムであり，GitHubはそのGitを用いた開発を支援するサービスです．
+たとえば，テキストファイルを更新していったときに，少し前（例えば数日前）のものを確認したり，ファイルそのものを戻したくなったりすることがあるかもしれません．
+素朴には，sugoireport20260401.txt, sugoireport20260404.txt, sugoireport20260423.txtのように，ファイル名に日付をつけるとよいと思うかもしれませんが，
+こういうファイルが増え続けると，どの時点に戻ればよいか分からなくなったりすることがあります．また，複数の人がファイルを編集している場合には，
+混乱はさらに大きくなります．</p>
+<p>このような問題をうまく解決できるのがGitであり，GitHubはそれを共有・共同作業のために便利に使えるサービスです．
+慣れるにはやや時間が必要なことも多いですが，こうした便利なツールにはなるべく早いうちに慣れておくことをおすすめします．なお，この講義では必須ではありません．</p>
+<p>ところで，GitHubにはバージョン管理以外にもさまざまな機能があり，一部は有料ですが，学生や教育機関の関係者はGitHub Education（GitHub Student Developer Pack など）を通じて一部の機能を無料で利用できます．
+そのためにはGitHub Educationに登録する必要があります．これも必須ではありませんが，登録してみることを勧めます．</p>
+<p>GitHub Educationを利用すると何ができるようになるかについては，講義中にも折に触れて説明します．</p>
+<h2 id="_8">この講義を最後まで学習すると具体的にどんなことができるの？</h2>
+<p>進捗にもよりますし，皆さんからの要望などにもよって変更となる可能性もありますが，例えば，この講義では次のような内容（の非常に基礎的な部分）をカバーします．</p>
+<ul>
+<li>
+<p>力学のシミュレーション．例えば太陽系の惑星の運動のシミュレーション．</p>
+</li>
+<li>
+<p>画像（写真）の圧縮．ノイズやぼけの除去．</p>
+</li>
+</ul>
+<h2 id="_9">この講義で扱わないこと</h2>
+<p>この講義では，（扱いたいけれど）扱わないこともたくさんあります．
+もちろん，そもそも数学的に定式化された問題しか扱わないのですが，離散数学的な内容はほとんど扱いません．
+例えば，<a href="https://ja.wikipedia.org/wiki/%E5%B7%A1%E5%9B%9E%E3%82%BB%E3%83%BC%E3%83%AB%E3%82%B9%E3%83%9E%E3%83%B3%E5%95%8F%E9%A1%8C">巡回セールスマン問題</a> のような問題は扱いません．
+離散数学や計算量理論は非常に重要ですし，また，実際に「アルゴリズム」を書名に冠した入門書の多くで扱われていますが，本講義では，具体的な問題としては</p>
+<ul>
+<li>積分の数値計算</li>
+<li>微分方程式の数値計算</li>
+<li>Fourier 級数</li>
+<li>固有値問題</li>
+</ul>
+<p>などをメインに扱います．
+従って，上述の通り「アルゴリズム」は重要なのですが，「数値計算法」や「数値解法」といった方が，本講義の内容によくあっているかもしれません．</p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

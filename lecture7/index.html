@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>数値積分 - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../lecture6/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../lecture8/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#_1">数値積分</a></li>
+            <li class="second-level"><a href="#1-algorithm1">矩形公式その 1 (algorithm1)</a></li>
+                
+            <li class="second-level"><a href="#2-algorithm2">矩形公式その 2 (algorithm2)</a></li>
+                
+            <li class="second-level"><a href="#algorithm3">台形則 (algorithm3)</a></li>
+                
+            <li class="second-level"><a href="#algorithm4">中点則 (algorithm4)</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="_1">数値積分</h1>
+<p>積分を数値的に計算するプログラムを書いていきましょう．</p>
+<p>この講義で扱う積分は 1 変数関数の定積分です：\( \displaystyle I = \int_a^b f(x)\,\mathrm{d}x\).</p>
+<p>積分の数値計算法は現代でも非常にホットな研究トピックなのですが，この講義では，かなり古くから知られている非常にシンプルな方法を学び，julia でプログラミングしてみます．
+今回は <strong>4</strong> つの手法を扱います．</p>
+<p>まず，どの手法でも区間 \([a,b]\) を \(n\) 個の区間に分割します：</p>
+<p>\[a = x_0 &lt; x_1 &lt; x_2 &lt; \cdots &lt; x_n = b. \]</p>
+<p>必ずしも等間隔に分割する必要はありませんが，等間隔に分割するのであれば，その幅は \( \displaystyle h = \frac{b-a}{n}\) となります（今回のプログラムでは，等間隔に分割する場合のみを考えますが，興味のある学生は，等間隔ではない場合なども考えてみるとよいでしょう）．
+以上の準備のもと，\(I\) を近似する公式を 4 つみていきましょう．それぞれ，絵で説明したあとに，公式を示します．</p>
+<p>なお，サンプルプログラムでは（\(a=0,b=1)\) としています．</p>
+<h3 id="1-algorithm1">矩形公式その 1 (algorithm1)</h3>
+<p><img src="../img/rectangular1.png" alt="rec1" width=60%></p>
+<p>図から明らかと思いますが，各小区間で<strong>「左側」</strong>の点の関数値を使った長方形を考え，その面積でその小区間の積分の近似とする方法です．これを \(n\) 個の区間について足し合わせます：</p>
+<p>\[ I_1 = \sum_{j=0}^{n-1} f(x_j) (x_{j+1} - x_{j}) = h\sum_{j=0}^{n-1} f(x_j). \]</p>
+<p>一番最後の等式は，「等間隔に分割した場合」の等号です（以下の 3 つの公式の説明でも同様です）．</p>
+<h3 id="2-algorithm2">矩形公式その 2 (algorithm2)</h3>
+<p><img src="../img/rectangular2.png" alt="rec2" width=60%></p>
+<p>これも図から明らかと思いますが，各小区間で<strong>「右側」</strong>の点の関数値を使った長方形を考え，その面積でその小区間の積分の近似とする方法です．これを \(n\) 個の区間について足し合わせます：</p>
+<p>\[ I_2 = \sum_{j=1}^{n} f(x_j) (x_j - x_{j-1}) = h\sum_{j=1}^{n} f(x_j). \]</p>
+<h3 id="algorithm3">台形則 (algorithm3)</h3>
+<p><img src="../img/trapezoidal.png" alt="trap" width=60%></p>
+<p>各小区間で<strong>「両側」</strong>の点の関数値を使った台形を考え，その面積でその小区間の積分の近似とする方法です．これを \(n\) 個の区間について足し合わせます：</p>
+<p>\[ I_3 = \sum_{j=0}^{n-1} \frac{f(x_{j+1})+f(x_j)}{2} (x_{j+1} - x_j) = \frac{h}{2}f(x_0) + h\sum_{j=1}^{n-1} f(x_j) + \frac{h}{2}f(x_n). \]</p>
+<h3 id="algorithm4">中点則 (algorithm4)</h3>
+<p><img src="../img/midpoint.png" alt="mid" width=60%></p>
+<p>各小区間で<strong>「中心」</strong>の点の関数値を使った長方形を考え，その面積でその小区間の積分の近似とする方法です．これを \(n\) 個の区間について足し合わせます：
+\[ I_4 = \sum_{j=0}^{n-1} f \left( \frac{x_{j+1} + x_j}{2} \right) (x_{j+1} - x_j) = h \sum_{j=0}^{n-1} f \left( \frac{x_{j+1} + x_j}{2} \right). \]</p>
+<div class="bs-callout bs-callout-primary">
+  <h4>課題</h4>
+    サンプルファイルをダウンロードし，その中の指示に従ってプログラムを完成させましょう．必要に応じて，「ここを埋める」が複数行になったり，別の箇所に行を挿入する可能性もあるかもしれません．また，「ここを埋める」に該当するfor文の範囲（例えばfor j = 0:num-1）は自由に（適切に）変更して構いません．<br>
+      CLEで提出する際は，「ここを埋める」付近のプログラムをコピーして，考察も書いてください．図表を添付することも歓迎します（その場合，考察ではファイル名を参照するようにしてください）．
+</div>
+
+<p>サンプルファイルは<a href="https://github.com/yutomiyatake/ExpMath1-programs/blob/db7867e6c324d73df830dae92eb4323d5d9c7a27/julia/numerical_integration.ipynb">こちら</a></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>for文, while文, 関数 - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../lecture1/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../lecture3/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#for-while">for文, while文, 関数を理解しよう</a></li>
+            <li class="second-level"><a href="#forwhile">for文とwhile文</a></li>
+                
+            <li class="second-level"><a href="#_1">関数</a></li>
+                
+            <li class="second-level"><a href="#_2">数学関数</a></li>
+                
+            <li class="second-level"><a href="#_3">再帰関数</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="for-while">for文, while文, 関数を理解しよう</h1>
+<h2 id="forwhile">for文とwhile文</h2>
+<p>何らかの命令を繰り返し実行させるプログラムを書くときに利用されるのが，<strong>for文</strong> と <strong>while文</strong> です．</p>
+<p>それぞれ，（どのようなプログラミング言語でも概ね）次のような構文となります（C言語についてはすぐに説明します）．</p>
+<pre><code class="language-bash">for i = 1,...,n
+  命令 i 
+</code></pre>
+<p>これは，「i が 1 から n まで繰り返して 命令i を実行」というプログラムです．</p>
+<pre><code class="language-bash">while (条件)
+  命令
+</code></pre>
+<p>これは，「条件 が満たされている限り 命令 を実行し続ける」というプログラムです．</p>
+<p>では，for文のサンプルプログラムをみてみましょう．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=for1.c"></script>
+
+<p>順番にみていきましょう．</p>
+<p>まず，<code>int i, n, x;</code> で，整数型の変数を3つ準備しています．少し下の for文 の中で使われている i についても型を宣言していることに注意してください．
+次の，<code>n = 10;</code> と <code>x = 0;</code> は n と x の値の初期化です．</p>
+<p>そして，for 文のところを見ていきましょう．<code>for (i=1; i&lt;=n; i++)</code> の括弧の中は，「i が 1 から n まで」という意味です．いま，直前で n に 10 を代入していますから，実際には「i が 1 から 10 まで」ということになります．なお，括弧の中のこの書き方はC言語特有です．例えば，来週から扱うJulia言語では <code>for i = 1:n</code> といった書き方になります．そして，<code>for (...)</code> に続く <code>{...}</code>のところに命令が 書かれています．すなわち，<code>x = x + i</code> が命令です．これをみて，「i は 0？」と思うかもしれませんが，これは方程式ではなく，「いまの x に i を足したものを新しく x の値とする」という意味です．このような書き方はほぼ全てのプログラミング言語で共通ですので，（特に数学科の学生にとっては）しばらくは違和感を覚えるかもしれませんが，慣れていってください．なお，<code>x += i</code> は <code>x = x + i</code> と同じです．</p>
+<p>今回のプログラムでは，命令がどのように実行されるかみてみましょう．まず，for文 が始まる時点で x = 0 です．i=1のとき，x + i は 1 ですから，命令 <code>x = x + i</code> が実行された結果，x の値は更新され，x=1 となります．次に，i=2 のとき，x + i は1 + 2 で 3 ですから，命令 <code>x = x + i</code> が実行された結果，x の値は更新され，x=3 となります．次に，i=3 のとき，x + i は3 + 3 で 6 ですから，命令 <code>x = x + i</code> が実行された結果，x の値は更新され，x=6 となります．もう分かりましたよね？以上の操作を i = n まで繰り返すわけですから，i = n のときの命令が実行された結果，x の値は 1からn までの整数の和になっているはずです．このプログラムでは n=10 ですから，x = 55 になっているはずです．for文 に続く<code>printf("x=%d\n",x);</code> は，x の値の出力ですから，このプログラムをコンパイルして実行すると．<code>x=55</code> という結果になります．</p>
+<p>では今度は while 文のサンプルをみてみましょう．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=while1.c"></script>
+
+<p>while文 の中をみてみましょう．まず最初は，a = 1 ですから，<code>n = n + a</code> と <code>a = a + 1</code> がそれぞれ実行され，n = 1, a = 2 となります．その直後の if文 は，もしa = 10 ならば while文 を抜け出すという命令です．いま，a = 2 ですから該当しません．そこでもう一度 while 文 の先頭に戻ります．a = 2 ですから a &lt; 100 という条件は満たしていますので，さきほどと同様に，<code>n = n + a</code> と <code>a = a + 1</code> がそれぞれ実行され，n = 3, a = 3 となります．この操作を a = 10 になるまで繰り返すわけです．従って，while 文 を抜け出すときには，n は 1 から 9 までの整数の和になっているはずです．このプログラムをコンパイルして実行すると．<code>n=45</code> という結果になります．</p>
+<h2 id="_1">関数</h2>
+<p>これまでみてきたプログラムはいずれも数行程度の簡単なものでしたが，一つのプログラムの中で何度も同じような計算をするときに，一から for文 や while文 を使って書くのは大変ですし，バグの原因にもなります（うっかりミスが増えます）．例えば，1 から n までの自然数の総和を計算するときには，<code>sum(n)</code> という感じで書くことができれば，とても楽になりそうです．例えば，上記のfor文のプログラムを次のように書くことができれば，かなり可読性が高くなりそうです．言い換えれば，他人が読んでも，あるいは書いた本人が一ヶ月後に読んでも，どんなプログラムかすぐに分かりますよね．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=sum1.c"></script>
+
+<p>ただし，これだけでは <code>sum</code> が定義されていないので，その定義も書く必要があります．その定義も含めたプログラムは次のようになります．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=sum2.c"></script>
+
+<p>では，<code>int sum(int n){...}</code> の中をみていきましょう．まず，
+<span class="text-danger">int</span> 
+<span class="text-primary">sum</span>
+(
+<span class="text-success">int n</span>
+)
+ の <span class="text-primary">sum</span> は関数の名前です．関数の名前は自由に決めればよいのですが，f とかだと，結局どんな関数なのか分かりづらいので，通常は，どういう関数なのかイメージしやすい名前をつけます．この関数は，<span class="text-success">整数</span> をもらって，<span class="text-danger">整数</span> を返す関数です．この場合，<span class="text-success">整数</span> のことを <span class="text-success"><strong>引数</strong></span> と呼び，括弧の中には <span class="text-success">int n</span> のように <span class="text-success">型 + 変数名</span> を書きます．そして，<span class="text-danger">整数</span> のことを <span class="text-danger"><strong>戻り値</strong></span> といいます．<span class="text-danger">int</span> は戻り値の型が整数であることを示しています．</p>
+<p>次に，<code>{...}</code> の中についてですが，for文 が終わると x の値は 1 から n までの総和になっています（これは for文 のところで説明した通りです）．そして，for文 に続く <code>return x;</code> で x が出力であることを示しています．
+ここで一つ注意です．<code>int sum(int n){...}</code> では戻り値は int型 といっています．そして，<code>{...}</code> の中で，x の型は int型 と宣言しています．この両者が一致していないと，コンパイルが通りません．</p>
+<h2 id="_2">数学関数</h2>
+<p>三角関数といった標準的な数学関数は，<code>#include &lt;math.h&gt;</code> を冒頭で宣言することで利用できます．一例をみてみましょう．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=math_func.c"></script>
+
+<h2 id="_3">再帰関数</h2>
+<p><strong>再帰関数</strong> とは「関数の中で自分自身を呼び出す関数」のことです．例えば，\(f(n) = n!\) のように階乗を計算する関数を定義したいとき，もちろん for文 や while文 を使って定義することもできますが，\(f(n) = n \times f(n-1)\), \(f(0) = 1\) のように定義することもできます．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=factorial.c"></script>
+
+<p>再帰関数は直感的な定義をそのままプログラムにすることができますが，場合によっては次のような問題があることに注意する必要があります．</p>
+<ul>
+<li>関数を呼び出す回数が指数的に増えて，計算量が膨大になることがある．</li>
+<li>メモリの使用量が増える．</li>
+</ul>
+<div class="bs-callout bs-callout-primary">
+  <h4>課題</h4>
+    フィボナッチ数列を求める/出力するプログラムを2通り（for文 を使うものと 再帰関数 を使うもの）作成してみよう．
+</div>
+<p>すなわち，以下のプログラムの <code>/* 埋める */</code> の部分を埋めましょう（埋めたら <code>/* */</code> は消してください）．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=fibonacci.c"></script></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

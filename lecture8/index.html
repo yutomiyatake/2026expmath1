@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Fourier級数展開 - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../lecture7/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../lecture9/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#fourier">Fourier 級数展開</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="fourier">Fourier 級数展開</h1>
+<p>今回の講義は関数の近似についてです．
+一年生のときに習った Taylor 展開は，有限項で打ち切ったとき，（適当な仮定のもと）局所的に関数の近似とみなすことができます．それに対して，今回の講義では「<strong>Fourier (フーリエ）級数展開</strong>」に基づく近似を考えます．</p>
+<p>やりたいことは非常に単純で，
+「\((-\pi,\pi)\) で定義された関数 \(f(x)\) を三角関数を使った無限級数」で近似することを考えます（なお，\((-\pi,\pi)\) というのは本質的ではなく，適当に変数変換をすれば別の領域でも同様の議論が可能です）．
+すなわち，ラフに表現するならば
+\begin{equation}
+\tag{1}
+\label{eq:fourier}
+f(x) \approx \frac{a_0}{2} + \sum_{k=1}^\infty a_k \cos (kx) + \sum_{k=1}^\infty b_k \sin(kx)
+\end{equation}
+のような近似することを考えるわけです．
+従って，\( a_k\) (\(k=0,1,\dots\)) と \( b_k\) (\(k=1,2,\dots\)) をどのように定めたらよいかを考える必要があります．</p>
+<div class="bs-callout bs-callout-default">
+  <h4><i class="fas fa-exclamation-triangle"></i>注意</h4>
+  曖昧に「近似」と言っていますが，実際「\(\approx\)」という記号は動機づけのために「近似の気持ち」をあらわす記号に過ぎません．本来は，関数 \(f\) に適切な仮定をおき，どのような意味で「近似」なのかをきちんと考える必要があります（\(\to\) Fourier解析，Lebesgue積分，関数解析といったトピックにつながっていきます．Fourier級数は工学的な応用でも非常に重要ですが，もしみなさんが将来そういった方面に進む事になったときにも，近似の意味などをきちんと考える姿勢は大いに役立ちます）．この講義では，「Fourier級数」の基本的な概念を理解することも重要ですが，同時に，視覚的に「近似の意味」を考えるきっかけにしてほしいと思っています．
+</div>
+
+<p>では，どのように \( a_k\) (\(k=0,1,\dots\)) と \( b_k\) (\(k=1,2,\dots\)) を定めればよいでしょうか（もちろんこれらは \(f\) に応じて定めるべきものです）．</p>
+<p><strong>指針</strong>：式 \eqref{eq:fourier} の右辺の部分和を \( S_N(x)\)，すなわち
+\[ S_N(x) = \frac{a_0}{2} + \sum_{k=1}^N a_k \cos (kx) + \sum_{k=1}^N b_k \sin(kx) \]
+とし，
+\[ \lim_{N\to\infty} \int_{-\pi}^{\pi} (f(x) - S_N(x))^2 \,\mathrm dx = 0 \]
+となるように定める．</p>
+<p>さきに答えを書いてしまうと（関数 \(f\) に対する適切な仮定の下），
+\begin{alignat}{2}
+a_k &amp;= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(kx)\,\mathrm dx &amp;\quad (k=0,1,\dots), \label{eq:ak}\cr
+b_k &amp;= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(kx)\,\mathrm dx &amp;\quad (k=1,2,\dots) \tag{2}\label{eq:bk}
+\end{alignat}
+とすればよいことが分かります．これにより，例えば次のような考察が得られます．</p>
+<ul>
+<li>\(f(x)\) が奇関数ならば，\(a_k = 0\) であり，\(\sin\) 関数だけで展開できる．</li>
+<li>\(f(x)\) が偶関数ならば，\(b_k = 0\) であり，\(\cos\) 関数だけで展開できる．</li>
+</ul>
+<p>要するに，奇 (偶) 関数は奇 (偶) 関数のみを使って展開できるという主張であり，直感にも合うでしょう．
+上記の\(a_k\) および \(b_k\) の証明をしようとすると，「積分とは何か」をきちんと考えないといけないことに気がつきます（実際に，歴史的にも関数解析が発展した一つのきっかけになっています）．
+この講義では，細かいところには立ち入りませんが，以下はイメージを掴むためのラフな説明です（\(b_k\) についてのみ説明しますが，\(a_k\) についても同様に理解できます）．</p>
+<p>まず，式 \eqref{eq:fourier} の 「\(\approx\)」を「\(=\)」だと思って，両辺に \(\sin (mx)\) を掛けて（\(m\) は自然数），積分してみましょう．
+すると，
+\begin{align}
+&amp;\int_{-\pi}^{\pi} f(x) \sin(mx) \,\mathrm dx \cr
+&amp;\quad =
+\frac{a_0}{2} \int_{-\pi}^{\pi} \sin(mx) \,\mathrm dx +
+\sum_{k=1}^\infty a_k \int_{-\pi}^{\pi} \cos(kx) \sin(mx) \,\mathrm dx +
+\sum_{k=1,k\neq m}^\infty b_k \int_{-\pi}^{\pi} \sin(kx) \sin(mx) \,\mathrm dx \cr
+&amp; \quad \phantom{=} \quad + b_m \int_{-\pi}^{\pi} \sin^2 (mx) \,\mathrm dx \cr
+&amp;\quad = b_m \int_{-\pi}^{\pi} \sin^2 (mx) \,\mathrm dx = \pi b_m
+\end{align}
+となり，\eqref{eq:bk} が妥当そうであることが理解できると思います．
+なお，右辺第 1〜3 項が 0 になる理由は以下の通りです：</p>
+<ul>
+<li>第 1 項：普通に積分すれば 0 になる．</li>
+<li>第 2 項：偶関数 \(\times\) 奇関数 \( =\) 奇関数 の積分だから自明に 0 である．</li>
+<li>第 3 項：\(\sin\) 関数の直交性（自分以外との積の積分は 0）より 0 である（高校数学の積和の公式を使えば直ちに確認できます）．</li>
+</ul>
+<p>Fourier 級数展開は関数系 \(\{1, \cos(x),\sin(x),\cos(2x),\sin(2x),\dots \}\) による展開になっていますが，これらは直交基底となっていることが分かります．
+互いに直交する（自分以外との内積が 0）関数で展開していることは Fourier 級数の大きな特徴の一つです．</p>
+<p>では，プログラムを見て課題を行っていきましょう．</p>
+<div class="bs-callout bs-callout-primary">
+  <h4>課題</h4>
+  以下のうち幾つかに取り組んでみましょう．
+  <ol>
+  <li>誤差 \(\displaystyle \mathrm{err}(N) = \int_{-\pi}^{\pi} (f(x) - S_N(x))^2\,\mathrm dx \) は \(N\) を大きくすると 0 に収束することが期待されます．
+  そこで，横軸を \(N\) として \(\mathrm{err}(N)\) をプロットしてみましょう．
+  手計算により \(\mathrm{err}(N)\) を \(a_k\) と \(b_k\) を用いて表しておくと便利です（もちろんこの計算は \(f(x)\) に依存します）．</li>
+  <li>\(N\) を大きくしたとき，\(\displaystyle \sup_{x\in(-\pi,\pi)} | f(x) - S_N(x) | \) は 0 に収束するか（すなわち一様収束するか）考えてみましょう．</li>
+  <li>\(f(x)\) として他の関数も試してみましょう．\(x^2\) や \(x^3\), \(x+ x^2\) のような多項式でもよいですし，不連続な関数（区分的に連続な関数：例えば\( (-\pi,0)\) で \(f(x) = -1\), \( (0,\pi)\) で \(f(x)=1\)（不連続点（この場合 \(x=0\)）では \(f(x)\) をどのように設定しても \(a_k\)や \(b_k\) の値には影響しません）で試してみるのもよいでしょう．ただし，（区分的に）多項式でない関数を考える場合は，\(a_k\) や \( b_k\) を求める積分の計算で，数値積分を使わざるをえなくなることもあります</li>
+  </ol>
+    サンプルファイルをベースに以上の課題を行い，CLEで提出してください．
+      CLEで提出する際は，必要に応じてプログラムの重要な箇所をコピーしたり，描いた図のファイルを添付したりしつつ，考察を書いてください．
+</div>
+
+<p>サンプルファイルは<a href="https://github.com/yutomiyatake/ExpMath1-programs/blob/db7867e6c324d73df830dae92eb4323d5d9c7a27/julia/Fourier.ipynb">こちら</a></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

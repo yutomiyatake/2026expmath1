@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>常微分方程式1 - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../lecture8/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../lecture10/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#1">常微分方程式の数値解法 1</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="1">常微分方程式の数値解法 1</h1>
+<p>今回の講義は常微分方程式（の初期値問題）
+\begin{equation}
+\frac{\mathrm d}{\mathrm dt} y(t) = f(y(t)), \quad y(0)=y_0 \in \mathbb R^d
+\end{equation}
+の数値計算についてです．（常微分方程式の境界値問題というものもありますが，これはむしろ偏微分方程式の特殊ケースとみなす方が見通しがよく，本講義では扱いません）．
+ここで，\(f:\mathbb R^d\to \mathbb R^d\) は与えられた（滑らかな）関数，\(y_0\) は与えられたベクトル（これを初期値と言います）です．
+常微分方程式の厳密解は形式的には
+\begin{equation}
+\tag{1}
+\label{eq:ode1}
+y(t) = y_0 + \int_0^t f(y(s))\,\mathrm d s
+\end{equation}
+と書けますが，非常に特殊な場合を除いて右辺の積分を解析的に求めることはできません．
+解を具体的に書くことができなくても，数学的には，解の存在・定性的性質など考えるべきことはたくさんあります．
+一方で，物理など現代科学の多くの分野では，微分方程式の解を具体的に数値として構成する必要があります．そこで，常微分方程式の近似（数値）解を構成する手法が必要になります．
+特に，離散化した時刻 \( 0=t_0 &lt; t_1&lt; t_2 &lt;\cdots \)における近似解を組織的に生成する方法を「離散変数法」といいます．</p>
+<p>一言で離散変数法（離散変分法と書いていたのを修正しました；「離散変分法」は偏微分方程式の数値解法の一つで，阪大の降籏大介先生が創始したものです）といっても実に多様な方法がありますが，一つのアイデアは，\eqref{eq:ode1}の右辺の積分を近似するというものです．時間刻み幅を\(h\)と表すことにして，\(y(h),y(2h),y(3h),\dots\)の近似解を構成することを考えましょう．以後， \(y(nh)\) の近似解を \(y_n\) と表します．</p>
+<p>例えば，数値積分を扱った以前の講義の Algorithm1 を用いると
+\[ y(h)=y_0 + \int_0^h f(y(s)) \,\mathrm ds \approx y_0 + h f(y_0) \]
+ですから，\( y(h)\) の近似 \( y_1\) を
+\[ y_1 = y_0 + h f(y_0)\]
+によって構成することが考えられます．この方法は
+\[\frac{y_1-y_0}{h} = f(y_0) \]
+とみれば，もとの常微分方程式そのものの近似と解釈することもできます．
+さらに，\( y(nh)\) の近似 \( y_n \) は \( y_0\) と \(y_1\) をそれぞれ \(y_n\) と \(y_{n+1}\) に置き換えて
+\[ y_{n+1} = y_n + h f(y_n), \quad n = 0,1,2,\dots\]
+によって構成することにしましょう．この方法を<strong>陽的 Euler (オイラー) 法</strong>といいます．</p>
+<p>積分の近似を変えると，例えば
+\[ y_1 = y_0 + h f(y_1)\]
+といった解法が考えられます．これを<strong>陰的 Euler 法</strong>といいます．\(f\) の中が \(y_1\) になっていますから，\(y_0\) から \(y_1\) を計算するときに， 陽的 Euler 法とは異なり，方程式を解かなければなりません．
+このように，先の時間の近似解を構成するために方程式を解かなければならない解法を 「陰的」な解法といい，その必要がない解法を「陽的」な解法といいます．
+\(f\) が線形でかつ \(d=1\) の場合は，陰的であってもただの（一変数の）１次方程式ですから，それを解くのは極めて簡単ですが,
+\(d&gt;2\) の場合は，連立１次方程式になり，連立１次方程式の数値解法（アルゴリズム）は自明ではありません（クラメールの公式は \(d\) に対して計算量が指数的に増えるので実用上は使えません．また，「逆行列を使えばよいのでは？」と思うかもしれませんが，一回生のときの線形代数を思い出してもらうと分かるように，逆行列は複数の連立一次方程式を解いてはじめて求められるので，通常，連立一次方程式を解くために逆行列を用いることはありません．）．\(f\) が非線形の場合はさらに大変で，陽的な解法と比べて非常に大きな計算コストがかかることがあります．</p>
+<p>天下り的ですが，
+\begin{align}
+Y_1 &amp;= y_0 \cr
+Y_2 &amp;= y_0 + \frac{h}{2} f(Y_1) \cr
+Y_3 &amp;= y_0 + \frac{h}{2} f(Y_2) \cr
+Y_4 &amp;= y_0 + h f(Y_3) \cr
+y_1 &amp;= y_0 + \frac{h}{6} \big( f(Y_1) + 2f(Y_2) + 2f(Y_3) + f(Y_4) \big)
+\end{align}
+という解法も有名で，これを（4 段 4 次の）陽的 Runge&ndash;Kutta (ルンゲ・クッタ；以下 RK) 法といいます．
+4 つの中間変数 \(Y_1,Y_2,Y_3,Y_4\) 用いることから 4 段の解法といいます（陽解法の場合，全体の計算コストはおおよそ関数 \(f\) の評価回数に比例します．
+その意味で RK 法は陽的 Euler 法のおおよそ 4 倍のコストがかかります）．「4 次」の意味については後述します．</p>
+<p>解法を暗記する必要は全くありませんが，陽的 Euler 法，陰的 Euler 法，RK 法は（前回の Fourier 級数と同様に）現代科学のリテラシーとして（少なくともその存在は）知っておくべき解法です．</p>
+<p>（どのような解法の場合も）一般に \( y_1 \neq y(h)\) ですが，\(y_1\) がより \(y(h)\) に近い解法ほど精度のよい解法と言ってよいでしょう．
+ここで \(y(h)\) を形式的に Taylor 展開してみます：
+\begin{equation}
+y(h) = y(0) + h \dot{y}(0) + \frac{h^2}{2} \ddot{y}(0) + \cdots
+= y_0 + h f(y_0) + \frac{h^2}{2} f^\prime (y_0) f(y_0) \cdots.
+\end{equation}
+これと陽的 Euler 法を比べてみると，\(h\) に関して 1 次の項まで一致していることが分かります．
+一般に，厳密解 \(y(h)\) の Taylor 展開と近似解 \(y_1\) の Taylor 展開（\(y_1\) を \(h\) の関数とみなして \(h\) に関して Taylor 展開）が \(h\) の \(p\) 次の項まで一致しているとき，その解法を「 \(p\) 次精度の解法」といいます． \(p\) が大きいほど， \(h\) を小さくしたときにより早く厳密解に収束しますし，ある固定の \(h\) で異なる解法を比較したとき， \(p\) が大きい方がより厳密解に近い数値解になることが多いです．
+しかし，陽的 Euler 法と RK 法の比較から分かるように，通常， \(p\) を大きくするにはより大きな計算コストが必要になり，その意味で，精度とコストの間にはトレードオフがあります．
+実際の応用で適切な数値解法を選択するためには，解きたい微分方程式の数学的性質と数値解法の様々な性質をよく理解しておくことが重要です．
+陽的 Euler 法と陰的 Euler 法は 1 次精度解法で，RK 法は 4 次精度解法です．</p>
+<p>詳細は述べませんが，計算コストと精度の他にも，例えば「安定性」といった概念があり，一般に陽解法に比べて陰解法の方が安定に計算できることが多いです．ただし，この講義では，プログラムを書く際には，（簡単に解ける場合を除いて）陰解法は扱いません（連立一次方程式などの解き方も理解する必要があるため．．．）．</p>
+<p>例題として，\(d=1\) の場合の次の微分方程式を考えましょう（\(d&gt;1\) の場合は来週扱います）：
+\begin{equation}
+\frac{\mathrm d}{\mathrm dt}y = -y, \quad y(0) = 1
+\end{equation}
+（この方程式の厳密解は簡単に書けて， \( y(t) = \mathrm{e}^{-t}\) です）．</p>
+<p>では，プログラムを見て課題を行っていきましょう．</p>
+<div class="bs-callout bs-callout-primary">
+  <h4>課題</h4>
+    サンプルプログラムの中のRK法の関数を完成させ，CLEで提出してください．
+    CLEで提出する際は，「テキスト情報の入力」欄に，自分で書いた関数の部分をコピーし，さらに，結果の図も添付し，参照しながら陽的Euler法との違いについての考察を書いてください．
+</div>
+
+<p>サンプルファイルは<a href="https://github.com/yutomiyatake/ExpMath1-programs/blob/db7867e6c324d73df830dae92eb4323d5d9c7a27/julia/ODE1.ipynb">こちら</a></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

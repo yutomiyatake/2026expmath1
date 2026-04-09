@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    
+    <title>Home - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="css/base.min.css" rel="stylesheet">
+    <link href="css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body class="homepage" >
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href=".">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="active">
+                        <a href=".">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="prev" >
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="programming/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#1-2026">実験数学 1 (2026 年度)</a></li>
+            <li class="second-level"><a href="#_1">講義の基礎情報</a></li>
+                
+            <li class="second-level"><a href="#web">この web ページの位置付け</a></li>
+                
+            <li class="second-level"><a href="#_2">注意点</a></li>
+                
+            <li class="second-level"><a href="#_3">プログラミングの環境</a></li>
+                
+            <li class="second-level"><a href="#windows">Windows を使っている学生への注意</a></li>
+                
+            <li class="second-level"><a href="#mac">mac を使っている学生へのおすすめ</a></li>
+                
+            <li class="second-level"><a href="#_4">バックアップは必ずとってください</a></li>
+                
+            <li class="second-level"><a href="#_5">参考書など</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="1-2026">実験数学 1 (2026 年度)</h1>
+<p>この web ページは 2026 年度の<strong>実験数学１（コンピュータプログラミング）</strong>のサポートページです．</p>
+<h2 id="_1">講義の基礎情報</h2>
+<table>
+<thead>
+<tr>
+<th>事項名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>授業名</td>
+<td>実験数学 1（コンピュータプログラミング）</td>
+</tr>
+<tr>
+<td>（主な）対象</td>
+<td>理学部数学科 2 年生</td>
+</tr>
+<tr>
+<td>授業コード</td>
+<td>040463</td>
+</tr>
+<tr>
+<td>時期</td>
+<td>2025 年度 春〜夏学期</td>
+</tr>
+<tr>
+<td>時限</td>
+<td>金曜 4 限</td>
+</tr>
+<tr>
+<td>教室</td>
+<td>情教 2</td>
+</tr>
+<tr>
+<td>教員</td>
+<td>宮武 勇登（みやたけ ゆうと）</td>
+</tr>
+<tr>
+<td>教員のメールアドレス</td>
+<td>yuto.miyatake.cmc (at) osaka-u.ac.jp</td>
+</tr>
+<tr>
+<td>TA</td>
+<td>CLE 参照</td>
+</tr>
+</tbody>
+</table>
+<h2 id="web">この web ページの位置付け</h2>
+<p>本講義の情報の提供は，CLE とこのウェブページの両方を使って行います．
+例えば，毎回の講義の補足や，レポートの提出には CLE を使います．一方で，講義の主な内容はこの web ページで提供する予定です．
+また，サンプルプログラムは，<a href="https://github.com/yutomiyatake/ExpMath1-programs">GitHub</a> でも公開します．</p>
+<h2 id="_2">注意点</h2>
+<ul>
+<li>理学部数学科 2 年生が主な対象ですが，他学科の学生も履修も歓迎します．</li>
+<li>プログラミングの経験は問いません．むしろ，「はじめてプログラミングを習う」人を念頭に講義を進めます．ただし，1 年生の「情報科学基礎（必修）」で習うような，最低限のリテラシーは身についていると期待します．</li>
+<li>数学についても，大学1年生の解析学や線形代数学で学習する標準的な内容を超えるような高度な知識は仮定しません．より発展的な内容を知っているというよりは，大学1年生で学習する数学を十分欲理解していることを期待しています．</li>
+<li>質問は，講義中あるいは講義の前後に受け付ける他，メールでも受け付けます．メールの場合，必ず TA と宮武の二人宛に送信してください．メールを送る際，CLE を用いるのが一番確実です．個人のメールアドレスから直接送っていただいても構いませんが，件名は「実験数学 1 の質問」などとし，本文中では必ず名前を名乗るようにしてください．また，キャリアメールなどからの送信は迷惑メールとして扱われる可能性もあるので，大学から提供されているメールアドレスを用いることを推奨します．土日や祝日を除いて，3日程度経っても返信がない場合は，再度問い合わせていただくか，次の講義の際に直接声をかけてください．</li>
+</ul>
+<h2 id="_3">プログラミングの環境</h2>
+<p>本講義では，（C言語と）Julia言語を主に扱います．
+これらの言語を利用できる環境を自分の計算機（コンピュータ）に構築することは重要であり，数年前までは，全ての受講者に環境構築をしてもらっていました．
+実際，一昔前に比べて（私が学生の頃と比べて）ネット上の情報も豊富であり，随分と環境構築の難易度は下がっているとは思います．
+しかし一方で，計算機のこれまでの設定とコンフリクトしてうまく環境構築できないことも少なくなく，特にプログラミングの初学者にとっては，学習の大きなハードルであったように思いますし，入り口の段階で苦手意識を持ってしまうことは教員としても本望ではありません．</p>
+<p>幸いにして，大阪大学では，一昨年度からJupyterHubのサービス（大雑把にいうと，オンライン上でプログラミングを行えるサービス）を運用しており，本年度の講義は，JupyterHubの利用を前提として進めていくこととします．
+ただし，繰り返しにはなりますが，プログラミング環境を自分の計算機に構築する経験も非常に重要ですので，一度は挑戦することをおすすめします．
+また，うまくいかないなど困ったことがあれば相談していただければ宮武かTAが対応します．</p>
+<p>以下は，個人のPCにプログラミング環境を構築する際の一般的な注意です：</p>
+<h2 id="windows">Windows を使っている学生への注意</h2>
+<p>Windows のアカウント名に</p>
+<div style="text-align: center;">
+<b> 半角アルファベット, 半角数字, 半角ハイフン, 半角ピリオド, 半角アンダースコア </b>
+</div>
+
+<p>以外の文字列を<strong>使っていない</strong>ことを確認してください（アカウント名が <strong>阪大太郎</strong> のようになっていないことを確認してください）．
+もし，これら以外の文字列を使っている場合，この講義のどこかのタイミングで，必要な環境が整えられなくなる可能性があります．</p>
+<p>そこで，もしこれら以外の文字をアカウント名の中で使っている人は，アカウント名をこれらの文字のみからなるように変更するか（ただし，アカウント名を変更してもユーザーフォルダの名前は変更されないので，依然として不具合が生じる可能性があります），新たにこれらの文字だけを使ったアカウントを別に用意してください．
+この講義に限らず，アカウント名に全角文字などを使っていると，将来的に，いろいろな不具合が生じる可能性が高いです．
+ただし，ファイルのバックアップなどは自己責任で行ってください．</p>
+<h2 id="mac">mac を使っている学生へのおすすめ</h2>
+<p><a href="https://brew.sh/index_ja">Homebrew</a>, <a href="https://www.macports.org/">MacPorts</a>, <a href="https://www.finkproject.org/index.php?phpLang=ja">Fink</a> などのパッケージ管理システムを利用すると，ソフトウェア等のインストールやバージョン管理が極めて楽になります（宮武は Homebrew を使っています）．</p>
+<p>これらの導入は非常に簡単です．例えば，Homebrew を導入したい場合，<a href="https://brew.sh/index_ja">homebrew の web ページ</a> にアクセスし，「インストール」の下のおまじないのような一行をコピーし（ただし，左端の「$」は除く），macOS のターミナルにペーストしエンターキーを押してしばらく待てば完了です．</p>
+<h2 id="_4">バックアップは必ずとってください</h2>
+<p>この講義に限らず，コンピュータを使ってプログラミングをしたり，レポートを書いたりする機会は今後増えてきます．
+ただ，使っているコンピュータがいつ壊れるかは全く予期できないため，定期的に（できる限り頻繁に）バックアップをとることをおすすめします．
+阪大生であれば，One Driveを利用するのも一つの選択肢です．</p>
+<h2 id="_5">参考書など</h2>
+<p><strong>Julia言語</strong></p>
+<ul>
+<li>進藤裕之，佐藤建太：1から始めるJuliaプログラミング，コロナ社．</li>
+<li>後藤俊介：実践Julia入門，技術評論社．</li>
+<li>宮武勇登：Juliaで理解を深める線形代数，オーム社．</li>
+</ul>
+<p><strong>数値計算・数値解析</strong></p>
+<ul>
+<li>齊藤宣一：数値解析，共立出版．</li>
+<li>より発展的な書籍は個別にご相談ください．</li>
+</ul></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "."</script>
+    
+    <script src="js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
+
+<!--
+MkDocs version : 1.4.2
+Build Date UTC : 2026-04-09 03:35:31.857669+00:00
+-->

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Gram&ndash;Schmidt - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../lecture4/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../lecture7/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#gramschmidt">Gram&ndash;Schmidt の正規直交化法</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="gramschmidt">Gram&ndash;Schmidt の正規直交化法</h1>
+<p>一年生の線形代数で学習した<strong>Gram&ndash;Schmidt (GS) の正規直交化法</strong>のプログララムを書いていきましょう．</p>
+<p>GS の正規直交化法とは，内積の定義されたベクトル空間 \(V\) において，ベクトルの集合 \( \{a_1,a_2,\dots,a_n \} \) が与えられたとき，これらの貼る部分空間の正規直交基底を具体的に構成する手続きです．この講義では，簡単のため \(V =\mathbb{R}^m \) とし，その内積は \(a,b\in\mathbb{R}^m \) に対して \( (a,b) := a^\top b\) であるとします（\(a^\top\) は \(a\) の転置を表します：\({}^t a\) と同じ意味です）．基本的なアルゴリズムは次の通りです（プログラムを書くことを意識し，\(=\) は右辺で左辺の変数を定義する（あるいは再定義する）という意味です）</p>
+<p>&nbsp; &nbsp; \( q_1 = a_1\) <br></p>
+<p>&nbsp; &nbsp; \(\displaystyle q_1 = \frac{q_1}{\|q_1\|}\) <br></p>
+<p>&nbsp; &nbsp; \( q_2= a_2 - (q_1,a_2)q_1\) <br></p>
+<p>&nbsp; &nbsp; \(\displaystyle q_2= \frac{q_2}{\|q_2\|}\) <br></p>
+<p>&nbsp; &nbsp; \( q_3= a_3 - (q_1,a_3)q_1 - (q_2,a_3)q_2\) <br></p>
+<p>&nbsp; &nbsp; \(\displaystyle q_3= \frac{q_3}{\|q_3\|}\) <br></p>
+<p>&nbsp; &nbsp; \(\vdots\) <br></p>
+<p>&nbsp; &nbsp; \( \displaystyle q_n= a_n - \sum_{j=1}^{n-1} (q_j,a_n)q_j \) <br></p>
+<p>&nbsp; &nbsp; \(\displaystyle q_n = \frac{q_n}{\|q_n\|}\)</p>
+<p>以上を擬似コード的に書けば次のようになるでしょう．</p>
+<pre><code class="language-bash">for i = 1:n
+    q_i = a_i
+    for j = 1:i-1
+        q_i -= (q_j,a_i) * q_j
+    end
+    q_i = q_i / norm(q_i)
+end
+</code></pre>
+<p>あとは，Julia の文法に沿って，ベクトルの集合を入力として受け取り，ベクトルの集合を出力する関数を定義すればよいわけです．しかし，ここでいくつか注意すべきことがあります．</p>
+<p>まず，内積やノルムはどうすればよいのでしょうか？実は，<a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/"><strong>LinearAlgebra</strong></a>というパッケージには，内積やノルムを計算する関数が既に用意されています．内積は <code>dot</code> で計算でき，ノルムは <code>norm</code> で計算できます．<a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.norm">ノルムの項</a>を読むと分かるように，ユークリッドノルム以外のノルムにも対応しています．</p>
+<p>ではこれで準備万端かというと，実はまだ考えなければならないことがあります．入力したベクトルの列が線形従属だとすると何が起きるでしょうか？そのような場合，どこかの <code>i</code> で <code>q_i</code> が零ベクトルとなってしまい，このときノルムは \(0\) ですから <strong>零割り</strong> が発生してしまいます．このような場合の対応策はいくつか考えられますが（GS の正規直交化法を使って「何をしたいのか」に強く依存します），少なくとも 「<code>q_i</code> が零ベクトルかどうかの判定」は必要そうです．どのように判定すればよいでしょうか？ベクトルの全ての成分が零かどうかを判定してもよいですが，（零ベクトルでなければ）その後すぐに正規化することを考えると，<code>norm(q_i)</code> が 0 かどうか判定すればよさそうです．では，<code>if norm(q_i) == 0</code> のような条件分岐を書けばよいのでしょうか？実は，このような条件分岐は「数学としては正しい」ですが，コンピュータで計算する際には丸め誤差が避けられないことを踏まえると（数学的には 0 でも，実際の計算では丸め誤差分のズレが生じます），倍精度で計算する場合には例えば <code>tol = 1e-10</code> のように閾値を設定して，<code>if norm(q_i) &lt; tol</code> のように条件分岐を書けばよいということになります（<code>1e-10</code> は \( 10^{-10}\) のことです ）．</p>
+<div class="bs-callout bs-callout-primary">
+  <h4>課題</h4>
+    サンプルファイルをダウンロードし，「ここを書く」の部分を埋めて，GSの正規直交化の関数を完成させましょう．また，これができれば，正規直交化が実現できていることを確認するにはどうすればよいか考えてみてください．<br>
+      CLEで提出する際は，「ここを書く」の部分のコピーをテキストとしてペーストして提出してください．また，（期待通りの出力が得られた/困っていることがある，など）簡単な考察を書いてください．
+</div>
+<p>サンプルファイルは<a href="https://github.com/yutomiyatake/ExpMath1-programs/blob/db7867e6c324d73df830dae92eb4323d5d9c7a27/julia/GramSchmidt.ipynb">こちら</a></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

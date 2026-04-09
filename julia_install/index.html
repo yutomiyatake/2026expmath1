@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Juliaのインストール - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../jupyterhub/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../lecture1/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#julia">Juliaのインストール</a></li>
+            <li class="second-level"><a href="#windows">Windows</a></li>
+                
+            <li class="second-level"><a href="#macos-linux">macOS, Linux</a></li>
+                
+            <li class="second-level"><a href="#_1">インストール後</a></li>
+                
+            <li class="second-level"><a href="#julia_1">Juliaのバージョン</a></li>
+                
+            <li class="second-level"><a href="#jupyterlab">JupyterLab</a></li>
+                
+            <li class="second-level"><a href="#vs-code">VS Code</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="julia">Juliaのインストール</h1>
+<p>Juliaのインストール方法は主に二つあります．</p>
+<ul>
+<li>Juliaup （Julia公式の管理ツール）を使ってインストール</li>
+<li>Julia公式のバイナリをダウンロードしてインストール</li>
+</ul>
+<p>以下では，Juliaupを使ったインストールを説明します．</p>
+<h2 id="windows">Windows</h2>
+<p>Windowsの場合は，
+Microsoftストアからダウンロードできます．</p>
+<h2 id="macos-linux">macOS, Linux</h2>
+<p>ターミナルで次を実行します：</p>
+<pre><code>curl -fsSL https://install.julialang.org | sh
+</code></pre>
+<h2 id="_1">インストール後</h2>
+<p>インストール後，ターミナルで　<code>juliaup</code> を実行すると，次のように表示されます．</p>
+<pre><code>$ juliaup
+The Julia Version Manager
+
+Usage: juliaup &lt;COMMAND&gt;
+
+Commands:
+  default      Set the default Julia version
+  add          Add a specific Julia version or channel to your system. Access
+               via `julia +{channel}` e.g. `julia +1.6`
+  link         Link an existing Julia binary or channel to a custom channel name
+  list         List all available channels
+  override     Manage directory overrides
+  update       Update all or a specific channel to the latest Julia version
+  remove       Remove a Julia version from your system
+  status       Show all installed Julia versions
+  gc           Garbage collect uninstalled Julia versions
+  config       Juliaup configuration
+  self         Manage this juliaup installation
+  completions  Generate tab-completion scripts for your shell
+  help         Print this message or the help of the given subcommand(s)
+
+Options:
+  -h, --help     Print help
+  -V, --version  Print version
+
+To launch a specific Julia version, use `julia +{channel}` e.g. `julia +1.6`.
+Entering just `julia` uses the default channel set via `juliaup default`.
+</code></pre>
+<h2 id="julia_1">Juliaのバージョン</h2>
+<p>数ヶ月おきに新しいバージョンがリリースされています．
+現在，バージョン1.10.10がlong-term support (LTS) 版となっています．
+また，この資料を作成した時点での最新のバージョン（release版）はバージョン1.12.5となっています．</p>
+<p>インストール可能なバージョンは，juliaup listで確認できます．</p>
+<pre><code>$ juliaup list
+Channel                Version                                
+---------------------------------------------------------------
+ 0                      0.7.0+0.x64.apple.darwin14             
+ 0.7                    0.7.0+0.x64.apple.darwin14             
+ 0.7.0                  0.7.0+0.x64.apple.darwin14             
+ 0.7.0~x64              0.7.0+0.x64.apple.darwin14           
+ （略）
+ 1.12.4                 1.12.4+0.aarch64.apple.darwin14        
+ 1.12.4~aarch64         1.12.4+0.aarch64.apple.darwin14        
+ 1.12.4~x64             1.12.4+0.x64.apple.darwin14            
+ 1.12.5                 1.12.5+0.aarch64.apple.darwin14        
+ 1.12.5~aarch64         1.12.5+0.aarch64.apple.darwin14        
+ 1.12.5~x64             1.12.5+0.x64.apple.darwin14       
+ （略）
+ release                1.12.5+0.aarch64.apple.darwin14        
+ release~aarch64        1.12.5+0.aarch64.apple.darwin14        
+ release~x64            1.12.5+0.x64.apple.darwin14            
+ nightly                latest-macos-aarch64                   
+ nightly~aarch64        latest-macos-aarch64                   
+ nightly~x64            latest-macos-x86_64                    
+ x.y-nightly            x.y-nightly-macos-aarch64              
+ x.y-nightly~aarch64    x.y-nightly-macos-aarch64              
+ x.y-nightly~x64        x.y-nightly-macos-x86_64               
+ pr{number}             pr{number}-macos-aarch64               
+ pr{number}~aarch64     pr{number}-macos-aarch64               
+ pr{number}~x64         pr{number}-macos-x86_64 
+</code></pre>
+<p>例えば，バージョン1.12.4をインストールするためには，次のコマンドを実行します．</p>
+<pre><code>juliaup add 1.12.4
+</code></pre>
+<p><code>juliaup status</code>を実行すると，インストールされているバージョンのリストが表示されます．</p>
+<pre><code> Default  Channel  Version                           Update 
+------------------------------------------------------------
+          1.9.4    1.9.4+0.aarch64.apple.darwin14           
+          1.10.3   1.10.3+0.aarch64.apple.darwin14          
+          lts      1.10.11+0.aarch64.apple.darwin14         
+       *  release  1.12.5+0.aarch64.apple.darwin14   
+</code></pre>
+<p>アスタリスク<code>*</code>がついているバージョンが，デフォルト（単にjuliaを実行したときに起動するJuliaのバージョン）です．
+また，<code>release</code>は，インストールされている中での最新のバージョンを表しますが，リリースされている中での最新のバージョンに更新するためには，<code>juliaup update</code>を実行します．
+本講義では，<code>lts</code>より新しいバージョンであれば，どのバージョンを使っても問題ありません．</p>
+<p>なお，デフォルトのバージョンを変更するときには，次のコマンドを実行します（以下は1.11.2に変更する場合の例です）．</p>
+<pre><code>juliaup default 1.11.2
+</code></pre>
+<h2 id="jupyterlab">JupyterLab</h2>
+<p>Pythonがインストールされている環境であれば，<code>pip</code>を利用してJupyterLabをインストールできます．</p>
+<pre><code>pip install jupyterlab
+</code></pre>
+<p>macやLinuxでHomebrewを利用している場合は，次のコマンドでもインストール可能です．</p>
+<pre><code>brew install jupyterlab
+</code></pre>
+<p>JupyterLabを起動するためには，ターミナルで次のように入力・実行します．</p>
+<pre><code>jupyter lab
+</code></pre>
+<p>すると，ブラウザで次のような画面が開きます．</p>
+<h2 id="vs-code">VS Code</h2>
+<p>Microsoftが開発しているソースコードエディタであるVS Codeを利用するのも便利です．</p>
+<p>以下は，JuliaおよびVS Codeがインストール済みであることを前提に，
+VS CodeでJuliaをNotebook形式で使用するための手順です．</p>
+<ol>
+<li>Julia拡張機能をインストール <br>
+(a) VS Code左側の「拡張機能」をクリック <br>
+(b) 二つの拡張機能「Julia」，「Jupyter」をインストール（juliaやjupyterで検索すれば，おそらく一番上に現れるはず）</li>
+<li>JuliaにIJuliaパッケージをインストール（<code>build IJulia</code>まで行う）<br><strong>注意：</strong> パッケージのインストール方法は授業で説明します</li>
+<li>VS CodeでJupyterが使えることを確認<br>
+(a) VS Codeで.ipynbファイルを作成 <br>
+(b) 上部の「カーネル」をクリックしJuliaを選択 </li>
+</ol></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

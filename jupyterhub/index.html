@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>JupyterHub - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../lecture1/">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../programming/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../julia_install/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#jupyterhub">JupyterHub</a></li>
+            <li class="second-level"><a href="#_1">アクセス方法</a></li>
+                
+            <li class="second-level"><a href="#_2">使用する際の注意</a></li>
+                
+            <li class="second-level"><a href="#_3">準備</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="jupyterhub">JupyterHub</h1>
+<p>ざっくりと言えば，（Julia を本格的に利用する際に導入してもらう予定の）JupyterLab というものを，みなさん個人の PC に整備するのではなく，クラウド上のサービスとしてオンラインで利用するものです（C 言語も Julia もどちらも利用できます）．他にも，PythonやRも利用できます．</p>
+<p>なお，個人のPCにも JupyterLab を導入すると，他の言語も扱えるようにできるなど，カスタマイズの自由度も高まります．</p>
+<p><strong>注意</strong> 以下は主に昨年度のJupyterHubの情報で，今年度は多少異なる点があります（たとえば，現時点ではVS Codeが利用できません）．</p>
+<h2 id="_1">アクセス方法</h2>
+<p><a href="https://vioras-jh2500.japaneast.cloudapp.azure.com/">JupyterHubのページ</a>にアクセスして，阪大のIDを使ってサインインします．</p>
+<p>もし次のような画面が現れたら「承諾」をクリックします．</p>
+<p><br><img src="../img/jupyterhub-initial.jpg" alt="julia2" width=40%></p>
+<p>次のような画面になりますが，しばらく待機します．</p>
+<p><br><img src="../img/jupyterhub-initial2.png" alt="julia2" width=60%></p>
+<p>しばらくすると，次のような画面になります．</p>
+<p><br><img src="../img/hub-start.png" alt="julia2" width=60%></p>
+<p>ここまでくれば，プログラミングを学習する環境は整ったといえますが，オフラインでは作業できない点には注意してください．</p>
+<p>なお，設定 → 言語 から，表示言語を変更することもできます．</p>
+<h2 id="_2">使用する際の注意</h2>
+<p>その他の注意点です．</p>
+<ul>
+<li><strong>バックアップ</strong>は頻繁に取るようにしてください</li>
+<li>講義中にも繰り返し注意しますが，<strong>追加のパッケージやライブラリは追加しないでください</strong> （なにか試してみたいときは必ず教員に相談してください）</li>
+</ul>
+<h2 id="_3">準備</h2>
+<p>左の方のブロック中で右クリックをし，「New Folder」を選択すると，新しいフォルダが生成され，フォルダの名前を例えば「ExpMath1」とします．</p>
+<p><br><img src="../img/folder1.png" alt="folder1" width=60%></p>
+<p><br><img src="../img/folder2.png" alt="folder1" width=60%></p>
+<p>この ExpMath1 というフォルダをダブルクリックすると，次のような画面になります．</p>
+<p><br><img src="../img/folder3.png" alt="folder1" width=60%></p>
+<p>このフォルダの中に，さきほどと同じ要領で，「c」というフォルダと「julia」というフォルダを作ります．</p>
+<p><br><img src="../img/folder4.png" alt="folder1" width=60%></p>
+<p>「c」をダブルクリックします．</p>
+<p>次に，次のプログラムの右下の「view raw」を右クリックし，保存します．
+保存する際の名前は拡張子も込みで「hello1.c」としてください．
+おそらく，特に何もしなければこの名前のフォルダが，各自のPCのダウンロードフォルダなどに保存されるはずです．</p>
+<p><br><script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=hello1.c"></script></p>
+<p>ダウンロードできたら，次のようにドラッグ・アンド・ドロップでJupyterHubの「c」のフォルダにコピーします．
+このように，ファイルはどんどん追加していけますし，逆に，JupyterHub上にあるファイルは右クリックすればローカルにダウンロードすることができます．</p>
+<p>（ターミナルに慣れている学生への補足）ターミナルを立ち上げて，該当のフォルダに移動し，view raw からリンクのアドレスをコピーしたうえで，<code>wget （ペースト）</code> を実行すれば，よりダイレクトにプログラムをダウンロードできます．</p>
+<video width="600" controls>
+  <source src="../video/hub-drug.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<p><strong>注意：</strong> 昨年度はVS Codeを用いていましたが，今年度はVS Codeが利用できないため，この後の説明はあくまで参考程度にしてください．
+「hello1.c」をダブルクリックすれば，エディタが立ち上がって中身を表示できます．</p>
+<p>この hello1.c というファイルはC言語のプログラムファイルです．
+プログラムの中身の説明は後の講義で行うこととし，ここでは，実行する手順を示しておきます．
+JupyterHub上ではいくつかの方法がありますが，多くの学生が個人のPCでも使っていると思われる VS Code を用いた方法を紹介しておきます．</p>
+<p>まず，VS Codeをクリックし，VS Codeを起動させ，フォルダやファイルを選択して，プログラムの中身を表示させます．
+おおよその手順は次の動画のとおりです．
+もし，"Trust the author" というようなウィンドウが表示された場合は，"Yes"を選択してください．</p>
+<video width="600" controls>
+  <source src="../video/hub-to-vscode.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<p>次に，ターミナルを立ち上げて，プログラムファイルを<strong>コンパイル</strong>して<strong>実行</strong>します．
+おおよその手順は次の動画のとおりです．</p>
+<video width="600" controls>
+  <source src="../video/vscode-gcc.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<p>ターミナルを立ち上げた後に入力している内容を簡単にまとめておきます．</p>
+<pre><code class="language-bash">pwd
+</code></pre>
+<p>いまいるフォルダ（ディレクトリ）を表示．<code>/home/jovyan</code> と表示されていますが，<code>jovyan</code> の部分は異なるかもしれません．</p>
+<pre><code class="language-bash">ls
+</code></pre>
+<p>いまいるフォルダの中にあるフォルダやファイル一式を表示．</p>
+<pre><code class="language-bash">cd ExpMath1/
+</code></pre>
+<p>ExpMath1 というフォルダへ移動（最後の <code>/</code> は無くてよい）．</p>
+<pre><code class="language-bash">cd c/
+</code></pre>
+<p>c というフォルダへ移動．2つの移動をまとめて</p>
+<pre><code class="language-bash">cd ExpMath1/c/
+</code></pre>
+<p>とすることもできます．</p>
+<pre><code class="language-bash">gcc hello1.c
+</code></pre>
+<p>hello1.c というC言語プログラムを<strong>コンパイル</strong>．</p>
+<p>すると，a.out という実行ファイルが生成されます（生成されたことは <code>ls</code> で確認できます）．最後にこれを実行します．</p>
+<pre><code class="language-bash">./a.out
+</code></pre>
+<p><code>Hello World!</code> と表示されていれば，ひとまず成功です．</p>
+<p>注意：コンパイルと実行を一度に（続けて）行うこともできます．</p>
+<pre><code class="language-bash">gcc hello1.c &amp;&amp; ./a.out
+</code></pre>
+<p>なお，一つ上のフォルダに戻るときは</p>
+<pre><code class="language-bash">cd ..
+</code></pre>
+<p>とします．はじめの <code>/home/jovyan</code> にまで一気に戻りたいときは</p>
+<pre><code class="language-bash">cd
+</code></pre>
+<p>とします．</p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

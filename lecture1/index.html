@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>C言語を試してみる (出力, if文) - 実験数学1</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">実験数学1</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../programming/">なぜプログラミング</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../jupyterhub/">JupyterHub</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../julia_install/">Juliaのインストール</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">授業 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">C言語を試してみる (出力, if文)</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture2/">for文, while文, 関数</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture3/">Juliaを試してみる</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture4/">関数と配列の諸注意</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture6/">Gram&ndash;Schmidt</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture7/">数値積分</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture8/">Fourier級数展開</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture9/">常微分方程式1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture10/">常微分方程式2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture12/">常微分方程式3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../lecture11/">特異値分解</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../julia_install/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../lecture2/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#c">C言語を試してみよう</a></li>
+            <li class="second-level"><a href="#_1">ハローワールド！（まずはここから）</a></li>
+                
+            <li class="second-level"><a href="#_2">書式</a></li>
+                
+            <li class="second-level"><a href="#_3">条件分岐</a></li>
+                
+            <li class="second-level"><a href="#_4">型：計算機の中の数の数の体系を理解しよう</a></li>
+                
+                <li class="third-level"><a href="#_5">ビット，バイト，...</a></li>
+                <li class="third-level"><a href="#_6">余談：写真の情報量</a></li>
+                <li class="third-level"><a href="#_7">型</a></li>
+                <li class="third-level"><a href="#_8">誤差</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="c">C言語を試してみよう</h1>
+<p>C言語を試してみましょう．</p>
+<h2 id="_1">ハローワールド！（まずはここから）</h2>
+<p>新しくプログラミング言語を習うときには，多くの場合，文字列の出力の仕方から学びます．「Hello World!」と出力させることが多いので，ハローワールドと呼ばれることもあります．
+では，そのプログラムをみてみましょう．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=hello1.c"></script>
+
+<p>3行目の <code>int main()</code> から説明しましょう．これはプログラムはここからはじまるという宣言です．そして，4行目の <code>{</code> から8行目の <code>}</code> までがプログラムのひとかたまりです．</p>
+<p>5行目の <code>printf(" ")</code> は，ダブルクオーテーション<code>" "</code>で囲まれた部分を出力するという命令（関数）です（関数については後述します）．そして <code>\n</code> は出力の後に改行をせよという命令です．これはあってもなくても一見して出力は変わりませんが，次の行よっては違いがみえてきます．</p>
+<p>6行目の先頭の <code>//</code> はその行はコメントであり，プログラムを実行する際には無視されます（プログラミング言語によって，<code>#</code> だったり <code>%</code> だったりします）．違いをみてみるために，<code>//</code> を外して実行してみましょう．5行目に <code>\n</code> を書いている場合と書いていない場合で出力が異なるはずです．</p>
+<p>最後に1行目の <code>#include &lt;stdio.h&gt;</code> に戻ります．これは，<code>printf</code> を用いるための必要な宣言です．とりあえずのところは，おまじないと思っておけばよいでしょう（関数について説明するときに少し詳しく説明します）．</p>
+<p>なお，7行目の <code>return 0</code> はプログラムが正常に終了したことをOSに伝えるものです．無くても動きます．但し，<code>return 1</code> などとすると，別の指示を連続して実行できなくなったりします．ひとまず，「おまじない」と思っておいて問題ありません．</p>
+<h2 id="_2">書式</h2>
+<p>次のプログラムです．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=format.c"></script>
+
+<p>出力は</p>
+<pre><code class="language-bash">3/2 is 1.
+</code></pre>
+<p>となるはずです．はじめてこのようなプログラムをみると，<code>printf</code> の中の <code>%d</code> にぎょっとすると思います．これについて説明しましょう．</p>
+<p>対応する部分を色分けして表示してみると次のようになります．</p>
+<p>printf("
+<span class="text-danger">%d</span>
+/
+<span class="text-primary">%d</span>
+is 
+<span class="text-success">%d</span>
+. \n", 
+<span class="text-danger">3</span>,
+<span class="text-primary">2</span>,
+<span class="text-success">3/2</span>);</p>
+<p>出力されるのは，上で学んだ通り，<code>" "</code> で囲まれた部分です．
+まず，最初の<span class="text-danger">%d</span> には <span class="text-danger">3</span> が下の表が示す通り整数として10進法で表示されます．
+これが分かれば，次の <span class="text-primary">%d</span> には <span class="text-primary">2</span> が整数として10進法で表示されるのも明らかでしょう．
+問題は最後の<span class="text-success">緑色</span>の箇所です．ここでは，<span class="text-success">%d</span> に <span class="text-success">3/2</span> が整数として表示されるわけですが，<strong> 3/2 を整数とは？？ </strong> と疑問に思いますよね．実際には，3/2 の小数点以下を切り捨てて 1 と表示されています．</p>
+<table>
+<thead>
+<tr>
+<th>書式指定</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%d</code></td>
+<td>整数を10進法で表示</td>
+</tr>
+<tr>
+<td><code>%f</code></td>
+<td>実数を表示</td>
+</tr>
+<tr>
+<td><code>%c</code></td>
+<td>文字（<code>' '</code>で囲まれた半角文字1個）を表示</td>
+</tr>
+<tr>
+<td><code>%s</code></td>
+<td>文字列（<code>" "</code>で囲まれた半角文字列）を表示</td>
+</tr>
+</tbody>
+</table>
+<div class="bs-callout bs-callout-primary">
+  <h4>課題</h4>
+    出力が
+    <pre><code class="bash">
+    3/2 is 1.5.
+    </code></pre>
+    となるようにプログラムを修正してみましょう．
+</div>
+<p>​     </p>
+<div class="bs-callout bs-callout-default">
+  <h4><i class="fas fa-exclamation-triangle"></i>注意</h4>
+  この課題の解答は一通りではありません．webや書籍で書式の細かい指定方法について調べていろいろ試してみましょう．</br>
+  一方で，現時点で「書式」についてあまりよく理解できなくても，本講義のこれからの内容を理解するうえで大きな問題にはなりません．
+  例えば，科学技術計算ではmatlab（や近年では本講義でも扱うJulia）等がよく用いられますが，プログラムを書くときに書式を意識することはほとんどありません．
+  計算結果を「小数点何桁まで表示させたい」あるいは「指数表現で表示させたい」といったときに，「そういえば書式という概念があったな」と思い出し，適切に検索できればよいと思います．
+</div>
+
+<h2 id="_3">条件分岐</h2>
+<p>プログラムを書く時，場合分けをしてコンピュータに処理をさせたいことがよくあります．
+こういうときに用いるのが <strong>条件分岐</strong>，通称 <strong>if 文</strong> です．</p>
+<p>プログラム言語にも依りますが，基本的には次のような構造になります．</p>
+<pre><code class="language-bash">if (条件1)
+    命令1 （←条件1が満たされていれば，命令1を実行）
+    elseif (条件2)
+        命令2 （←条件1が満たされておらず，条件2が満たされていれば，命令2を実行）
+    else 
+        命令3
+</code></pre>
+<p><code>if</code> だけの場合，<code>else if</code> が複数ある場合，<code>else</code> が無い場合など様々なバリエーションがあります．</p>
+<p>C言語の一例をみてみましょう．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=if1.c"></script>
+
+<p>まず最初の <code>int a = 5</code> は，まさに「a は 5」という宣言です．直前の <code>int</code> については事項で説明しますので，一旦無視しておいてください．</p>
+<p>さて，肝心の　<code>if ( )</code> の括弧の中身をみてみましょう．<code>a%2</code> は「aを2で割った余り」を意味します．そして，括弧の中は「aを2で割った余りが0」という条件になります（「何かが何かに等しい」という条件を表すときには多くの言語でイコールを2つ書きます）．これが条件が満たされていれば，<code>if</code> の直後の命令が実行され，満たされていなければ <code>else</code>の直後の命令が実行されます．いま，<code>a = 5</code> ですから，この条件は満たされていません，従って，<code>else</code> の直後の命令が実行され，<code>5 is odd.</code> と出力されるわけです．</p>
+<p>なお，<code>if</code> に関する中括弧 <code>{ }</code> を省略してもOKです（ただし，実行する行が一行の場合に限ります）．</p>
+<script src="https://gist.github.com/yutomiyatake/d28b1b088d5bf94ec003d6757b70a92d.js?file=if2.c"></script>
+
+<div class="bs-callout bs-callout-warning">
+  <h4><i class="fas fa-exclamation-triangle"></i> 改行，インデント</h4>
+  上のプログラムでは，
+  <code class="bash">
+    int main()
+  </code>
+  の直後に（同じ行に） 
+  <code class="bash">
+    {
+  </code>が書かれています．
+  これまでは一旦改行してから書かれていました．
+  実は，C言語では，改行や空白はあってもなくてもプログラムとして違いはありません．
+  しかし，例えばプログラムを1行で書いてしまうと，どこからどこまでがひとかたまりで，全体がどういう構造になっているのか，他者が見たときに分かりません．
+  おそらく，書いた本人も翌日になると混乱するでしょう．
+  なお，いまのところは数行のプログラムですが，大きなプログラムになると，数十行，数百行，数千行，数万行になることも珍しくありません．
+  従って，適切に改行と空白（インデントといいます），さらにはコメントを入れたプログラムを書くことが重要です．
+  さらに，改行や空白が必ず必要な言語もありますので，C言語のような言語を扱うときも改行や空白を適切に挿入する習慣をつけておくことをおすすめします（C言語は他の言語よりプログラム全体が長くなる傾向があるのでなおさらです）．
+</div>
+
+<h2 id="_4">型：計算機の中の数の数の体系を理解しよう</h2>
+<p>計算機の中では無限は扱えません．たとえば，円の面積を計算したいときに，半径が整数ならば「半径 x 半径」の部分は厳密に計算できても，円周率をかけるときはどうしても有限桁で打ち切った近似計算になってしまいます．では，計算機の中で，整数や実数（あるいは文字）はどのように表現されているのでしょうか．</p>
+<h3 id="_5">ビット，バイト，...</h3>
+<p>計算機の中は二進法であるという話は聞いたことがあると思います．また，スマートフォンやPCを購入する時，ギガバイトやテラバイトという言葉を聞いたことがあると思います．これらについての理解からはじめましょう．</p>
+<p>コンピュータの中で，情報（の最小単位）は0か1で表現されます．そこで，2通りの情報を表現する最小単位を<strong>ビット</strong>と言います．「ボールを一つ入れることができる箱1つ」というイメージです．すなわち，その箱にはボールが入っているか入っていないかの2通りがあります．そして，コンピュータの中にはこの小さな箱が非常にたくさんあるとイメージすればよいでしょう．もっとも，実際には，コンピュータの中に箱があるわけではなく，電圧の高低でボールが入っているか入っていないかを区別します．</p>
+<p>この最小単位の小さな箱が8個集まったものが<strong>1バイト</strong>と呼ばれます．すなわち「1バイト=8ビット」です．箱が8個あるわけですから，2^8 = 256 通りの状態が表現できるわけです．これら8個の箱で整数を表そうとすると，0以上の整数ならば，0〜255まで区別できます．負の数も含めると-128〜127まで区別できます．</p>
+<p>その次の単位は，「<strong>1キロバイト</strong>=1000バイト」です．よく <strong>1KB</strong> と表現されます．テキストファイルや小さなワードファイルなどでよくみかけると思います．</p>
+<p>その次の単位は．「<strong>1メガバイト</strong>=1000キロバイト」です．よく <strong>1MB</strong> と表現されます．スマートフォンで撮影した写真がだいたい数百KB〜数MBくらいです（後述します）．</p>
+<p>その次の単位は，「<strong>1ギガバイト</strong>=1000メガバイト」です．よく <strong>1GB</strong> と表現されます．ノートPCのメモリが8GB〜32GB，ハードディスクやSSDが数百GBからその次の単位である数TBです．</p>
+<p>その次の単位は，「<strong>1テラバイト</strong>=1000ギガバイト」です．よく <strong>1TB</strong> と表現されます．日常生活で目にするのはこのあたりまでですが，もちろん更に大きな単位もあります．</p>
+<h3 id="_6">余談：写真の情報量</h3>
+<p>例えば，iPhone7で写真を撮ると，縦3,920 x 横2,940 の各点に（赤，緑，青）の情報がそれぞれ256段階で表現されます．すなわち，各点の色を表現するのに 3B（バイト）使います．従って，写真全体では 3,920 x 横2,940 x 3B でおおよそ 32MB ということになります．ということは，30枚くらいの写真を保存するのに1GB必要で，300枚くらいになると10GB必要ということになります．しかし，みなさんの使っているスマートフォンの容量とその中に保存されている写真（や動画）の枚数を考えると，計算が合っていないように感じるでしょう（実際にはもっとたくさんの写真が保存できているはずです）．実際，それぞれの写真のファイルサイズを調べてみると，数百KBから数MBのことがほとんどです．「説明と矛盾しているではないか！？」と思われるかもしれませんが，そんなことはなくて，実は，写真を保存するときには<strong>圧縮</strong>という技術が使われています．そこではそれなりに数学的に高度な技術が使われています．この講義の後半（7月頃）に，圧縮（ただし，実用的に使われているものではなく，1年生の線形代数で理解できる非常に初歩的な方法）についても解説する予定です．</p>
+<h3 id="_7">型</h3>
+<p>さて，ここからが本題で，数字をどのように（何バイトで）表現するのかについて説明しましょう．ここでは，まず代表的なものを3種類紹介します．</p>
+<table>
+<thead>
+<tr>
+<th>型の名前</th>
+<th>意味</th>
+<th>バイト数（ビット数）</th>
+<th>入る値のおおまかな範囲</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>整数</td>
+<td>4 (32)</td>
+<td>\(-2,147,483,648\sim 2,147,483,647\)</td>
+</tr>
+<tr>
+<td>float</td>
+<td>実数</td>
+<td>4 (32)</td>
+<td>\(-3.4\times 10^{38} \sim 3.4\times 10^{38}\)</td>
+</tr>
+<tr>
+<td>double</td>
+<td>実数</td>
+<td>8 (64)</td>
+<td>\(-1.7\times 10^{308} \sim 1.7\times 10^{308}\)</td>
+</tr>
+</tbody>
+</table>
+<p>整数を <strong>int 型</strong> で表すとき，4バイト使うことになります（箱32個）．従って，int 型で表現可能な整数には上限と下限があります．<strong>float 型</strong> と <strong>double 型</strong> はどちらも実数の型ですが，使用するバイト数が異なります．double型の方が多くの箱を使うわけですから，当然表現能力も高いわけです．すぐに，double 型 を例にどのように実数が表されるのか説明しますが，感覚として，float 型は有効数字7桁程度の実数，double 型は有効数字15桁程度の実数，というふうに認識しておくとよいでしょう．</p>
+<p>では，double 型でどのように実数を表現するのかについて説明します．まず，64個の箱の使い方を理解する必要があります．double 型では，64個の箱を「符号部」，「仮数部」，「指数部」の3つに役割分担します．</p>
+<p>たとえば，実数を</p>
+<p>$$- 1.234567 \times 10 ^{-5}$$</p>
+<p>と表現するとき，「\(-\)」を「符号部」，「\(1.234567\)」を「仮数部」，「\(10^{-5}\)（の特に\(-5\)の部分)」を指数部といいます．
+64ビットの内訳は</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ビット数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>符号部</td>
+<td>1</td>
+</tr>
+<tr>
+<td>仮数部</td>
+<td>52</td>
+</tr>
+<tr>
+<td>指数部</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+<p>と決められています．</p>
+<p>符号部は，\(+\) と \(-\) を区別できればよいので，箱は一つで十分であることは明らかでしょう．</p>
+<p>仮数部には 52 個の箱を使えるわけですから，\(2^{52}\approx 10^{15.65}\) 通りを区別できます．すなわち，10 進法では有効数字が \(15\sim 16\) 桁ということになります． </p>
+<p>指数部には11個の箱を使います．つまり，\(2^{11} = 2048\) 通りを区別できます．通常，\(2048\) を \(-1022\sim 1023\) の \(2046\) 個の整数と残り \(2\) 個に割り当て，
+指数部としては，\(2^{-1022}\) から \(2^{1023}\) までを表現できます．残りの\(2\)個分は，\(0\) と \(\mathrm{NAN}\) を区別するために利用します． </p>
+<!-- そのうち1個は \\(\pm\\) の区別に割り当てるので，指数部で表現できる最大は \\(2^{2^{10}}\approx 10^{308}\\) ということになります． -->
+
+<p>ここまで，コンピュータの中では実数は有限桁でしか表現できないことを説明しました．
+別の見方をすれば，コンピュータが扱える数は <strong>有限個</strong> ということになります．
+これらを全て集めてきた集合を \(\mathbb{F}\) とすれば，\(\mathbb{F} \subset \mathbb{R}\) が成り立ちます．</p>
+<h3 id="_8">誤差</h3>
+<p>以上では，コンピュータの中では実数は有限桁でしか表現できないことを説明しました．
+このことにより，計算の中で様々な誤差が混入してしまいます．
+従って，コンピュータで計算する際には，「どのような誤差があるかを理解すること」，「混入する誤差をできる限り小さくすること（そのようにプログラムを工夫すること）」，「全体の計算結果を，誤差があることを前提に理解・解釈すること」などが重要になります．</p>
+<p>ここでは代表的な誤差を 3 種類紹介します．</p>
+<p>1つ目は，「<strong>丸め誤差</strong>」です．
+たとえば，\(a, b\in \mathbb{F}\) に対して，\(a+b\) は \(\mathbb{F}\) に含まれているとは限りません（計算機で表現可能とは限りません）．
+従って，\(a+b \not\in \mathbb{F}\) のときは，\(\mathbb{F}\) の中で \(a+b\) に近いもので代用します．
+その操作を「丸める」といい，その時の誤差を「丸め誤差」といいます．
+従って，ほぼ全ての演算で丸め誤差が混入すると言っても過言ではありません．
+一つ一つの演算の丸め誤差は小さくても，何万回，何億回と演算を行うと，「塵も積もれば山となる」という状況になりかねないので，丸め誤差には十分注意する必要があります（丸め誤差を抑制するような演算方法も知られています）．</p>
+<p>2つ目は，「<strong>積み残し</strong>」です．
+絶対値の大きい数と小さい数を足し引きする場合，有効桁数の問題から，小さい数が無視されることがあります．一例を挙げましょう．
+例えば，
+$$\sum_{k=1}^\infty \frac{1}{k^2} = \frac{\pi^2}{6} \ (= \ 1.64493406684822\cdots)$$
+ですが，matlabというソフトウェアで倍精度で数値計算すると，\(k=94906266\) 以降は \(\frac{1}{k^2}\) は小さすぎて無視されます．
+実際，\(1/94906266^2 \approx 1.110223015834071 \times 10^{-16}\) であり，これより小さい数を足し込んでも全くカウントされません．
+\(10^{-16}\) 程度の数なので，その影響は大きくないと想像するかもしれませんが，この時点での部分和は \(S_{94906266} = 1.644934057834575\) であり，正しい収束先と比較すると，倍精度で計算したにも関わらず，\(8\) 桁しか合っていない．
+このような減少を避けるための簡単な処方箋として，「小さい方から足していく（ただし，どの程度小さいところから足していけばよいかは自明ではない）」といったことが考えられる．</p>
+<p>3つ目は，「<strong>桁落ち</strong>」です．
+近い数の引き算をする際，有効桁数が著しく減少することがあり，この減少を「桁落ち」といいます．
+たとえば，
+$$1.0000002 \times  10^2 − 1.0000000 \times 10^2 = 2 \times 10^{-5}$$
+であり，有効数字 7 桁同士の数同士を引き算した結果，有効数字が 1 桁になってしまっています．
+倍精度の演算であっても，一回の演算で一気に10桁近く有効数字の桁数が減少することがあり注意する必要があります（一旦桁落ちが起こると，基本的にその回復はできません）．
+言い換えれば，計算結果の仮数部は常に（10進法で）\(15\sim 16\)桁ですが，（桁落ちが生じると）その中で本当に意味を持つ値は最初の数桁，あるいは最初の一桁すら意味を持たないといったことが起こる可能性があります．
+桁落ちは「知らないうちに発生する」ことが多く，常に注意を払う必要があります．
+簡単な一例を見てみましょう．
+2次方程式 \(ax^2 + bx + c = 0\) の解は
+$$x_\pm = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$$
+ですが，\(b^2 \gg 4ac\) のとき分子はおおよそ \(-b \pm |b|\) であり，\(b\) の符号によって \(\pm\) のどちらかは非常に近い数同士の引き算に対応します．
+そして著しい有効数字の減少が起きてしまいます．
+これを避けるための処方箋も知られています．
+たとえば，\(b&gt;0\) の場合は \(\pm\) のうち \(+\) の計算が問題になりますが，有理化をして
+$$x_+ = \frac{-2c}{b + \sqrt{b-4ac}}$$
+を計算すれば桁落ちは避けられます（分子は非常に近い数同士の「足し算」になっています）．</p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>© 2021 Yuto Miyatake</small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
